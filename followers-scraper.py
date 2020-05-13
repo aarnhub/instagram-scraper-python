@@ -64,6 +64,5 @@ for i in range(1,count):
    f.write(list[0] + '\r\n')
    f.close()
    print('{};{}'.format(i, list[0]))
-   #print(i + ";" + list[0])
    if i == (count-1):
      print(x)
