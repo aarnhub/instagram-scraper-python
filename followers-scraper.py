@@ -11,6 +11,7 @@ from selenium.common.exceptions import TimeoutException
 import time
 import os
 import datetime
+from webdriver_manager.chrome import ChromeDriverManager
 
 count = 100  # number of profiles you want to scrap
 account = "therock"  # account from
@@ -28,7 +29,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57"')
 
-driver = webdriver.Chrome(chrome_options=options)
+driver = webdriver.Chrome(ChromeDriverManager().install())
 
 driver.get('https://www.instagram.com/accounts/login/')
 sleep(3)
@@ -52,7 +53,7 @@ x = datetime.datetime.now()
 print(x)
 
 for i in range(1,count):
-   scr1 = driver.find_element_by_xpath('/html/body/div[4]/div/div[2]/ul/div/li[%s]' % i)
+   scr1 = driver.find_element_by_xpath('/html/body/div[4]/div/div/div[2]/ul/div/li[%s]' % i)
    driver.execute_script("arguments[0].scrollIntoView();", scr1)
    sleep(1)
    text = scr1.text
@@ -61,7 +62,7 @@ for i in range(1,count):
    csvfilename = os.path.join(dirname, account + "-" + page + ".txt")
    file_exists = os.path.isfile(csvfilename)
    f = open(csvfilename,'a')
-   f.write(list[0] + '\r\n')
+   f.write(str(list[0]) + "\r\n")
    f.close()
    print('{};{}'.format(i, list[0]))
    if i == (count-1):
