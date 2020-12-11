@@ -33,6 +33,8 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 
 driver.get('https://www.instagram.com/accounts/login/')
 sleep(3)
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Accept')]"))).click()
+sleep(1)
 username_input = driver.find_element_by_css_selector("input[name='username']")
 password_input = driver.find_element_by_css_selector("input[name='password']")
 username_input.send_keys(yourusername)
@@ -53,7 +55,7 @@ x = datetime.datetime.now()
 print(x)
 
 for i in range(1,count):
-   scr1 = driver.find_element_by_xpath('/html/body/div[4]/div/div/div[2]/ul/div/li[%s]' % i)
+   scr1 = driver.find_element_by_xpath('/html/body/div[5]/div/div/div[2]/ul/div/li[%s]' % i)
    driver.execute_script("arguments[0].scrollIntoView();", scr1)
    sleep(1)
    text = scr1.text
