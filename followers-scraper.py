@@ -13,12 +13,12 @@ import os
 import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 
-count = 100  # number of profiles you want to scrap
+count = 100  # number of profiles you want to get
 account = "therock"  # account from
 page = "followers"  # from following or followers
 
-yourusername = "********" #your Instagram username
-yourpassword = "********"  #your Instagram password
+yourusername = "*********" #your IG username
+yourpassword = "*********"  #your IG password
 
 
 #for proxy i recommend 4G mobile proxy: http://www.virtnumber.com/mobile-proxy-4g.php
@@ -30,6 +30,7 @@ options.add_argument('--ignore-certificate-errors')
 options.add_argument('--user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16D57"')
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
+
 
 driver.get('https://www.instagram.com/accounts/login/')
 sleep(3)
@@ -67,5 +68,6 @@ for i in range(1,count):
    f.write(str(list[0]) + "\r\n")
    f.close()
    print('{};{}'.format(i, list[0]))
+   #print(i + ";" + list[0])
    if i == (count-1):
      print(x)
